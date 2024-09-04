@@ -11,7 +11,7 @@ import SwiftUI
 struct SynchroSoundApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SynchroSoundTabView()
         }
     }
 }

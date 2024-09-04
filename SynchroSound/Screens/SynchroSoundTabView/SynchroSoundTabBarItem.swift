@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct SynchroSoundTabBarItem: View {
+    let symbol: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Circle()
+                .fill(.brandCyan)
+                .frame(width: 60, height: 60)
+            
+            Image(systemName: symbol)
+                .tint(.brandLightBlue)
+                .font(.system(size: 35))
+        }
+        
     }
 }
 
 #Preview {
-    SynchroSoundTabBarItem()
+    SynchroSoundTabBarItem(symbol: "questionmark")
 }
