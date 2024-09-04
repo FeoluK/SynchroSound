@@ -8,10 +8,24 @@
 import SwiftUI
 
 struct SynchroSoundInfoView: View {
+    @State var sheetPresented = false
+    
     var body: some View {
         ZStack {
             SynchroSoundBackground()
-            Text("This is the info view")
+            
+            VStack {
+                SynchroSoundTitle()
+                
+                HStack(spacing: 80) {
+                    SynchroSoundInfoButton(symbol: "music.note")
+                    SynchroSoundInfoButton(symbol: "music.note")
+                }
+                
+                Spacer()
+
+            }
+                        
         }
         
     }
@@ -20,3 +34,5 @@ struct SynchroSoundInfoView: View {
 #Preview {
     SynchroSoundInfoView()
 }
+
+

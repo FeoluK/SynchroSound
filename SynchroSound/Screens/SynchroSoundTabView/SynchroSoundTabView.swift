@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import Observation
 
 struct SynchroSoundTabView: View {
-    
-    @State private var selectedTab = "info"
+
+    @StateObject var viewModel = TabBarViewModel()
     
     var body: some View {
         ZStack(alignment: .bottom) {
             
-            TabView(selection: $selectedTab) {
+            TabView(selection: $viewModel.selectedTab) {
                 SynchroSoundScanView()
                     .tag("scan")
                 
@@ -28,7 +29,7 @@ struct SynchroSoundTabView: View {
                     .tag("info")
             }
             
-            CustomTabView(selectedTab: $selectedTab)
+            CustomTabView(selectedTab: $viewModel.selectedTab)
             
         }
         
@@ -38,31 +39,4 @@ struct SynchroSoundTabView: View {
 
 #Preview {
     SynchroSoundTabView()
-}
-
-struct CustomTabView: View {
-    
-    @Binding var selectedTab: String
-    
-    var body: some View {
-        
-        VStack{
-            Divider()
-                .background(.brandPurple1)
-                .padding(15)
-            
-            HStack(spacing: 25) {
-                ForEach((TabItems.allCases), id: \.self) { item in
-                    Button {
-                        selectedTab = item.rawValue
-                    } label: {
-                        SynchroSoundTabBarItem(symbol: item.symbol)
-                    }
-                    
-                }
-            }
-        }
-        
-        
-    }
 }
