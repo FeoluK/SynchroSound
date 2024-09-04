@@ -22,8 +22,9 @@
 		6801CB9D2C88282D00CA9193 /* TabItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801CB9C2C88282D00CA9193 /* TabItems.swift */; };
 		6801CB9F2C88286000CA9193 /* SynchroSoundTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801CB9E2C88286000CA9193 /* SynchroSoundTabBarItem.swift */; };
 		6801CBA12C884A7C00CA9193 /* SynchroSoundTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801CBA02C884A7C00CA9193 /* SynchroSoundTitle.swift */; };
-		6801CBA32C8851DE00CA9193 /* SynchroSoundInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801CBA22C8851DE00CA9193 /* SynchroSoundInfoButton.swift */; };
+		6801CBA32C8851DE00CA9193 /* SynchroSoundInfoCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801CBA22C8851DE00CA9193 /* SynchroSoundInfoCircle.swift */; };
 		6801CBA52C8852F400CA9193 /* SynchroSoundTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801CBA42C8852F400CA9193 /* SynchroSoundTabViewModel.swift */; };
+		6801CBA72C88985000CA9193 /* SynchroSoundInfoViewRoundBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801CBA62C88985000CA9193 /* SynchroSoundInfoViewRoundBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +63,9 @@
 		6801CB9C2C88282D00CA9193 /* TabItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItems.swift; sourceTree = "<group>"; };
 		6801CB9E2C88286000CA9193 /* SynchroSoundTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSoundTabBarItem.swift; sourceTree = "<group>"; };
 		6801CBA02C884A7C00CA9193 /* SynchroSoundTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSoundTitle.swift; sourceTree = "<group>"; };
-		6801CBA22C8851DE00CA9193 /* SynchroSoundInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSoundInfoButton.swift; sourceTree = "<group>"; };
+		6801CBA22C8851DE00CA9193 /* SynchroSoundInfoCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSoundInfoCircle.swift; sourceTree = "<group>"; };
 		6801CBA42C8852F400CA9193 /* SynchroSoundTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSoundTabViewModel.swift; sourceTree = "<group>"; };
+		6801CBA62C88985000CA9193 /* SynchroSoundInfoViewRoundBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSoundInfoViewRoundBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +167,8 @@
 			children = (
 				6801CB972C88082700CA9193 /* SynchroSoundBackground.swift */,
 				6801CBA02C884A7C00CA9193 /* SynchroSoundTitle.swift */,
-				6801CBA22C8851DE00CA9193 /* SynchroSoundInfoButton.swift */,
+				6801CBA22C8851DE00CA9193 /* SynchroSoundInfoCircle.swift */,
+				6801CBA62C88985000CA9193 /* SynchroSoundInfoViewRoundBlock.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,7 +318,8 @@
 				6801CB922C87F9B400CA9193 /* SynchroSoundScanView.swift in Sources */,
 				6801CB962C87F9E800CA9193 /* SynchroSoundAccountView.swift in Sources */,
 				6801CB9D2C88282D00CA9193 /* TabItems.swift in Sources */,
-				6801CBA32C8851DE00CA9193 /* SynchroSoundInfoButton.swift in Sources */,
+				6801CBA32C8851DE00CA9193 /* SynchroSoundInfoCircle.swift in Sources */,
+				6801CBA72C88985000CA9193 /* SynchroSoundInfoViewRoundBlock.swift in Sources */,
 				6801CB982C88082700CA9193 /* SynchroSoundBackground.swift in Sources */,
 				6801CB682C87BABA00CA9193 /* SynchroSoundTabView.swift in Sources */,
 				6801CB942C87F9D400CA9193 /* SynchroSoundTextView.swift in Sources */,

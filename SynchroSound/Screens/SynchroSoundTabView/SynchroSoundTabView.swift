@@ -25,7 +25,7 @@ struct SynchroSoundTabView: View {
                 SynchroSoundAccountView()
                     .tag("account")
                 
-                SynchroSoundInfoView()
+                SynchroSoundInfoView(selectedTab: $viewModel.selectedTab)
                     .tag("info")
             }
             
