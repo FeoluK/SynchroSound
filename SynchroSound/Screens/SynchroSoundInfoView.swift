@@ -19,14 +19,14 @@ struct SynchroSoundInfoView: View {
                 SynchroSoundTitle()
                 
                 HStack(spacing: 20) {
-                    SynchroSoundInfoCircle(symbol: "music.note", description: "DESCRIBE \nYOUR FEELINGS")
+                    SynchroSoundSymbolCircle(symbol: "music.note", description: "DESCRIBE \nYOUR FEELINGS")
                     
                     Image(systemName: "waveform.circle.fill")
                         .foregroundStyle(.white)
                         .font(.system(size: 40))
                         .offset(CGSize(width: 0, height: -18.0))
                     
-                    SynchroSoundInfoCircle(symbol: "music.note", description: "SCAN \nYOUR FACE")
+                    SynchroSoundSymbolCircle(symbol: "music.note", description: "SCAN \nYOUR FACE")
                 }
                 
                 HStack(spacing: 175) {
@@ -54,7 +54,7 @@ struct SynchroSoundInfoView: View {
                     .background(.white)
                     .padding(.horizontal, 35)
                 
-                SynchroSoundInfoCircle(symbol: "beats.headphones", description: "")
+                SynchroSoundSymbolCircle(symbol: "beats.headphones", description: "")
                 
                 Button {
                     selectedTab = "scan"

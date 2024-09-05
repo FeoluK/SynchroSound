@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SynchroSoundInfoCircle: View {
+struct SynchroSoundSymbolCircle: View {
     let symbol: String
     let description: String
     
@@ -36,5 +36,5 @@ struct SynchroSoundInfoCircle: View {
 
 
 #Preview {
-    SynchroSoundInfoCircle(symbol: "music.note", description: "This is the description.")
+    SynchroSoundSymbolCircle(symbol: "music.note", description: "This is the description.")
 }
