@@ -11,7 +11,7 @@ class NetworkManager {
         
     static let shared = NetworkManager()
     
-    static private let googleAPIKEY = "AIzaSyBAaST8BPpwaz3y9qpsCEB6mcnFrU71rCQ"
+    static private let googleAPIKEY = ""
     static private let googleURL = "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKEY)"
     
     private init() {}
