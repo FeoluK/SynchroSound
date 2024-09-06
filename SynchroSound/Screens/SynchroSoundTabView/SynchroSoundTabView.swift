@@ -19,9 +19,6 @@ struct SynchroSoundTabView: View {
                 SynchroSoundScanView()
                     .tag("scan")
                 
-                SynchroSoundTextView()
-                    .tag("text")
-                
                 SynchroSoundAccountView()
                     .tag("account")
                 

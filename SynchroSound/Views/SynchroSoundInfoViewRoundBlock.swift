@@ -14,7 +14,7 @@ struct SynchroSoundInfoViewRoundBlock: View {
         Text(text)
             .frame(width: 140, height: 50)
             .font(.system(size: 28, weight: .medium, design: .rounded))
-            .background(.brandLightBlue)
+            .background(.brandVibrantBlue)
             .foregroundStyle(.white)
             .clipShape(RoundedRectangle(cornerRadius: 30))
     }

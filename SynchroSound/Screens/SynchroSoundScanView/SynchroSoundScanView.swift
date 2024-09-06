@@ -1,8 +1,16 @@
+//
+//  SynchroSoundScanView.swift
+//  SynchroSound
+//
+//  Created by Feolu Kolawole on 9/5/24.
+//
+
+
 import SwiftUI
-import UIKit
 
 struct SynchroSoundScanView: View {
-    @StateObject var viewModel =  SynchroSoundScanViewModel()
+    
+    @StateObject var viewModel = SynchroSoundScanViewModel()
     
     var body: some View {
         ZStack {
@@ -35,30 +43,19 @@ struct SynchroSoundScanView: View {
                 .onDisappear {
                     if let image = viewModel.selectedImage {
                         viewModel.detectEmotion(from: image)
+                        
+                        if !viewModel.detectedEmotion.isEmpty {
+                            viewModel.showEmotionResults = true
+                        }
                     }
                 }
         }
+        .fullScreenCover(isPresented: $viewModel.showEmotionResults) {
+            SynchroSoundSongsView(viewModel: viewModel)
+        }
     }
-    
-    
 }
 
 #Preview {
     SynchroSoundScanView()
 }
-
-
-//for face in faceAnnotations {
-//    if let joyLikelihood = face["joyLikelihood"] as? String {
-//        emotionProbabilities += "Joy: \(joyLikelihood)\n"
-//    }
-//    if let sorrowLikelihood = face["sorrowLikelihood"] as? String {
-//        emotionProbabilities += "Sorrow: \(sorrowLikelihood)\n"
-//    }
-//    if let angerLikelihood = face["angerLikelihood"] as? String {
-//        emotionProbabilities += "Anger: \(angerLikelihood)\n"
-//    }
-//    if let surpriseLikelihood = face["surpriseLikelihood"] as? String {
-//        emotionProbabilities += "Surprise: \(surpriseLikelihood)\n"
-//    }
-//}

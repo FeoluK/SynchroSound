@@ -9,7 +9,6 @@ import Foundation
 
 enum TabItems: String, CaseIterable {
     case scan = "scan"
-    case text = "text"
     case account = "account"
     case info = "info"
     
@@ -18,8 +17,6 @@ enum TabItems: String, CaseIterable {
         switch self {
         case .scan:
             return "faceid"
-        case .text:
-            return "keyboard"
         case .account:
             return "gear"
         case .info:
