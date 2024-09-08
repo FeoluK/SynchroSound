@@ -9,7 +9,10 @@ import SwiftUI
 
 struct SynchroSoundSongsView: View {
     
-    @ObservedObject var viewModel: SynchroSoundScanViewModel
+    @ObservedObject var scanViewModel: SynchroSoundScanViewModel
+    @StateObject var songViewModel = SynchroSongsViewModel()
+    
+    var sampleResponse = MockSpotifyResponse.sampleResponse.tracks
     
     var body: some View {
         ZStack {
@@ -17,8 +20,9 @@ struct SynchroSoundSongsView: View {
             
             VStack(spacing: 0) {
                 
-                Circle()
+                SpotifySongImage(imageURL: songViewModel.tracks.first?.album.images.first?.url ?? sampleResponse[0].album.images[0].url)
                     .frame(width: 250, height: 250)
+                    .clipShape(Circle())
                     .foregroundStyle(.white)
                 
                 Text("Your Song Matches")
@@ -39,14 +43,14 @@ struct SynchroSoundSongsView: View {
                     SynchroSoundInfoViewRoundBlock(text: "Mood")
                 }
                 
-                SynchroSoundSongMatchesView()
+                SynchroSoundSongMatchesView(viewModel: songViewModel)
             }
             
             
             VStack() {
                 HStack {
                     Button {
-                        viewModel.showEmotionResults = false
+                        scanViewModel.showEmotionResults = false
                     } label: {
                         XDismissButton()
                             .offset(CGSize(width: 0, height: -20.0))
@@ -58,4 +62,8 @@ struct SynchroSoundSongsView: View {
             .padding()
         }
     }
+}
+
+#Preview {
+    SynchroSoundSongsView(scanViewModel: SynchroSoundScanViewModel())
 }

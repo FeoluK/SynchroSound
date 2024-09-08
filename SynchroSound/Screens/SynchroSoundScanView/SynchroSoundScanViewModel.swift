@@ -11,7 +11,8 @@ class SynchroSoundScanViewModel: ObservableObject {
     @Published var showCamera = false
     @Published var selectedImage: UIImage?
     @Published var detectedEmotion: String = "No emotion detected yet"
-    @Published var showEmotionResults = false
+    @Published var showEmotionResults = false 
+
     
     func detectEmotion(from image: UIImage) {
         Task {

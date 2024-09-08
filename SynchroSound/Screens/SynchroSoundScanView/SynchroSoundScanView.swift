@@ -51,7 +51,7 @@ struct SynchroSoundScanView: View {
                 }
         }
         .fullScreenCover(isPresented: $viewModel.showEmotionResults) {
-            SynchroSoundSongsView(viewModel: viewModel)
+            SynchroSoundSongsView(scanViewModel: viewModel)
         }
     }
 }
