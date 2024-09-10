@@ -10,11 +10,11 @@ import SwiftUI
 struct SpotifySongCell: View {
     
     let track: SpotifyResponse.TrackObject
-    let sampleTrack = MockSpotifyResponse.sampleResponse.tracks[0]
     
     var body: some View {
         ZStack {
-            SpotifySongImage(imageURL: track.album.images.first?.url ?? sampleTrack.album.images[0].url)
+            SpotifySongImage(imageURL: track.album.images.first?.url ??
+                             MockSpotifyResponse.sampleResponse.tracks[0].album.images[0].url)
                 .frame(width: 160, height: 160)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .scaledToFit()

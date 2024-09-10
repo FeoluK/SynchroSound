@@ -11,16 +11,15 @@ struct SynchroSoundSongsView: View {
     
     @ObservedObject var scanViewModel: SynchroSoundScanViewModel
     @StateObject var songViewModel = SynchroSongsViewModel()
-    
-    var sampleResponse = MockSpotifyResponse.sampleResponse.tracks
-    
+        
     var body: some View {
         ZStack {
             SynchroSoundSongBackground()
             
             VStack(spacing: 0) {
                 
-                SpotifySongImage(imageURL: songViewModel.tracks.first?.album.images.first?.url ?? sampleResponse[0].album.images[0].url)
+                SpotifySongImage(imageURL: songViewModel.tracks.first?.album.images.first?.url ??
+                                 MockSpotifyResponse.sampleResponse.tracks[0].album.images[0].url)
                     .frame(width: 250, height: 250)
                     .clipShape(Circle())
                     .foregroundStyle(.white)
@@ -45,21 +44,33 @@ struct SynchroSoundSongsView: View {
                 
                 SynchroSoundSongMatchesView(viewModel: songViewModel)
             }
+            .blur(radius: songViewModel.showingDetailView ? 20 : 0)
             
-            
-            VStack() {
-                HStack {
-                    Button {
-                        scanViewModel.showEmotionResults = false
-                    } label: {
-                        XDismissButton()
-                            .offset(CGSize(width: 0, height: -20.0))
+            if !songViewModel.showingDetailView {
+                VStack() {
+                    HStack {
+                        Button {
+                            scanViewModel.showEmotionResults = false
+                        } label: {
+                            XDismissButton()
+                                .offset(CGSize(width: 0, height: -20.0))
+                        }
+                        Spacer()
                     }
                     Spacer()
                 }
-                Spacer()
+                .padding()
             }
-            .padding()
+            
+            else {
+                SynchroSoundSongsDetailView(track: songViewModel.selectedTrack ??
+                                            MockSpotifyResponse.sampleResponse.tracks[0],
+                                            viewModel: songViewModel)
+            }
+            
+        }
+        .onAppear {
+            songViewModel.getSongs(spotifyRequest: MockSpotifyRequest.sadRequest)
         }
     }
 }

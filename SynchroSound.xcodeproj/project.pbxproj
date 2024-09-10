@@ -37,6 +37,7 @@
 		6858B1922C8AC614002F33B2 /* SynchroSongsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6858B1912C8AC614002F33B2 /* SynchroSongsViewModel.swift */; };
 		6858B1942C8ADCE4002F33B2 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6858B1932C8ADCE4002F33B2 /* XDismissButton.swift */; };
 		6858B1962C8C35E2002F33B2 /* SpotifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6858B1952C8C35E2002F33B2 /* SpotifyRequest.swift */; };
+		6858B1982C8D8D4A002F33B2 /* SynchroSoundSongsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6858B1972C8D8D4A002F33B2 /* SynchroSoundSongsDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		6858B1912C8AC614002F33B2 /* SynchroSongsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSongsViewModel.swift; sourceTree = "<group>"; };
 		6858B1932C8ADCE4002F33B2 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		6858B1952C8C35E2002F33B2 /* SpotifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyRequest.swift; sourceTree = "<group>"; };
+		6858B1972C8D8D4A002F33B2 /* SynchroSoundSongsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchroSoundSongsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 		6801CB642C87BABA00CA9193 /* SynchroSound */ = {
 			isa = PBXGroup;
 			children = (
+				6858B1992C8DAC29002F33B2 /* Extensions */,
 				6858B1852C899181002F33B2 /* Model */,
 				6858B17D2C896E33002F33B2 /* Utilities */,
 				6858B1772C891942002F33B2 /* Info.plist */,
@@ -255,11 +258,19 @@
 		6858B18E2C8AC4A7002F33B2 /* SynchroSoundSongsView */ = {
 			isa = PBXGroup;
 			children = (
+				6858B1972C8D8D4A002F33B2 /* SynchroSoundSongsDetailView.swift */,
 				6858B1862C8A9219002F33B2 /* SynchroSoundSongsView.swift */,
 				6858B18F2C8AC4FC002F33B2 /* SynchroSoundSongMatchesView.swift */,
 				6858B1912C8AC614002F33B2 /* SynchroSongsViewModel.swift */,
 			);
 			path = SynchroSoundSongsView;
+			sourceTree = "<group>";
+		};
+		6858B1992C8DAC29002F33B2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,6 +406,7 @@
 				6801CB9F2C88286000CA9193 /* SynchroSoundTabBarItem.swift in Sources */,
 				6858B17A2C892210002F33B2 /* CameraView.swift in Sources */,
 				6858B18B2C8A9A68002F33B2 /* SpotifySongCell.swift in Sources */,
+				6858B1982C8D8D4A002F33B2 /* SynchroSoundSongsDetailView.swift in Sources */,
 				6801CB922C87F9B400CA9193 /* SynchroSoundScanView.swift in Sources */,
 				6801CB962C87F9E800CA9193 /* SynchroSoundAccountView.swift in Sources */,
 				6858B1802C896ED2002F33B2 /* NetworkManager.swift in Sources */,

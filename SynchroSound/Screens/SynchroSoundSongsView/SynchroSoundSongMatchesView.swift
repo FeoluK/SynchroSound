@@ -16,7 +16,13 @@ struct SynchroSoundSongMatchesView: View {
             ScrollView {
                 LazyVGrid(columns: viewModel.columns, spacing: 10) {
                     ForEach(viewModel.tracks, id: \.self) { track in
-                        SpotifySongCell(track: track)
+                        Button {
+                            viewModel.selectedTrack = track
+                            viewModel.showingDetailView = true
+                        } label: {
+                            SpotifySongCell(track: track)
+                        }
+                        .disabled(viewModel.showingDetailView)
                     }
                 }
                 .padding(.horizontal, 25)
@@ -26,9 +32,6 @@ struct SynchroSoundSongMatchesView: View {
         }
         .padding(.top, 15)
         .padding(.bottom, 40)
-        .onAppear {
-            viewModel.getSongs(spotifyRequest: MockSpotifyRequest.sadRequest)
-        }
     }
 }
 

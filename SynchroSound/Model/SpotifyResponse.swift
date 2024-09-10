@@ -26,6 +26,7 @@ struct SpotifyResponse: Codable, Hashable {
         let href: String
         let id: String
         let name: String
+        let preview_url: String?
         let popularity: Int
         let type: String
     }
@@ -93,7 +94,7 @@ struct MockSpotifyResponse {
                             width: 640
                         )
                     ],
-                    name: "Sample Album 1",
+                    name: "This is the first sample album name",
                     release_date: "2024-09-07",
                     release_date_precision: "day",
                     type: "album",
@@ -115,13 +116,21 @@ struct MockSpotifyResponse {
                         name: "Sample Artist 1",
                         type: "artist",
                         uri: "spotify:artist:1"
+                    ),
+                    SpotifyResponse.Artist(
+                        external_urls: SpotifyResponse.ExternalURL(spotify: "https://open.spotify.com/artist/1"),
+                        href: "https://api.spotify.com/v1/artists/1",
+                        name: "Sample Artist 2",
+                        type: "artist",
+                        uri: "spotify:artist:1"
                     )
                 ],
                 duration_ms: 180000,
                 external_urls: SpotifyResponse.ExternalURL(spotify: "https://open.spotify.com/track/1"),
                 href: "https://api.spotify.com/v1/tracks/1",
                 id: "1",
-                name: "Sample Track 1",
+                name: "This is the sample track name 1",
+                preview_url: nil,
                 popularity: 80,
                 type: "track"
             ),
@@ -169,6 +178,7 @@ struct MockSpotifyResponse {
                 href: "https://api.spotify.com/v1/tracks/2",
                 id: "2",
                 name: "Sample Track 2",
+                preview_url: nil,
                 popularity: 70,
                 type: "track"
             ),
@@ -216,6 +226,7 @@ struct MockSpotifyResponse {
                 href: "https://api.spotify.com/v1/tracks/3",
                 id: "3",
                 name: "Sample Track 3",
+                preview_url: nil,
                 popularity: 90,
                 type: "track"
             ),
@@ -263,6 +274,7 @@ struct MockSpotifyResponse {
                 href: "https://api.spotify.com/v1/tracks/4",
                 id: "4",
                 name: "Sample Track 4",
+                preview_url: nil,
                 popularity: 85,
                 type: "track"
             ),
@@ -310,6 +322,7 @@ struct MockSpotifyResponse {
                 href: "https://api.spotify.com/v1/tracks/5",
                 id: "5",
                 name: "Sample Track 5",
+                preview_url: nil,
                 popularity: 75,
                 type: "track"
             )
