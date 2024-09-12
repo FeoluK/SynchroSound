@@ -23,7 +23,7 @@ struct SpotifySongCell: View {
                 Spacer()
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 160, height: 40)
-                    .foregroundStyle(.brandLightBlue)
+                    .foregroundStyle(.brandVibrantBlue)
                     .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
                 
             }.frame(width: 160, height: 160)

@@ -13,18 +13,20 @@ class TabBarViewModel: ObservableObject {
 
 
 struct CustomTabView: View {
-    
+ 
     @Binding var selectedTab: String
-    
+
+    static let height: CGFloat = 60
+
     var body: some View {
-        
-        VStack{
+        VStack {
             Divider()
-                .background(.brandPurple1)
-                .padding(15)
+                .background(.white)
+                .frame(width: 360)
+                .padding(.bottom, 15)
             
             HStack(spacing: 25) {
-                ForEach((TabItems.allCases), id: \.self) { item in
+                ForEach(TabItems.allCases, id: \.self) { item in
                     Button {
                         selectedTab = item.rawValue
                     } label: {
@@ -34,7 +36,6 @@ struct CustomTabView: View {
                 }
             }
         }
-        
-        
+        .frame(height: Self.height)
     }
 }

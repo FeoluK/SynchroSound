@@ -18,6 +18,7 @@ class SynchroSongsViewModel: ObservableObject {
     @Published var player: AVPlayer?
     @Published var isPlayingPreview = false
     @Published var currentTime: Double = 0.0
+    @Published var isShowingAlert = false
     
     private var timer: Timer?
     let columns = [
@@ -57,6 +58,10 @@ class SynchroSongsViewModel: ObservableObject {
     }
     
     func playPausePreview() {
+        if(selectedTrack?.preview_url == nil) {
+            isShowingAlert = true
+        }
+        
         guard let player = player else { return }
         
         if player.rate == 1.0 {

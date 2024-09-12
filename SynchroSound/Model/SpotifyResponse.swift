@@ -66,6 +66,9 @@ struct SpotifyResponse: Codable, Hashable {
     }
 }
 
+struct SpotifyGenreResponse: Codable, Hashable {
+    let genres: [String]
+}
 
 struct MockSpotifyResponse {
     static let sampleResponse = SpotifyResponse(

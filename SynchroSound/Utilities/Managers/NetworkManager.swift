@@ -182,7 +182,52 @@ class NetworkManager {
         }
     }
     
-    
+    func getGenres() async throws -> [String] {
+        guard let url = URL(string: NetworkManager.spotifyURL + "/available-genre-seeds") else {
+            print("Invalid URL")
+            throw URLError(.badURL)
+        }
+        
+        do {
+            NetworkManager.spotifyAccessToken = try await requestSpotifyAccessToken(clientID: NetworkManager.spotifyClientID, clientSecret: NetworkManager.spotifyClientSecret)
+        } catch {
+            print("Error fetching access token: \(error)")
+            throw error
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(NetworkManager.spotifyAccessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("Response is not of type HTTPURLResponse")
+                throw URLError(.badServerResponse)
+            }
+            
+            guard httpResponse.statusCode == 200 else {
+                print("Received HTTP error code \(httpResponse.statusCode)")
+                throw URLError(URLError.Code(rawValue: httpResponse.statusCode))
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let spotifyResponse = try decoder.decode(SpotifyGenreResponse.self, from: data)
+                return spotifyResponse.genres
+            }
+            catch {
+                print("Failed to decode")
+                throw error
+            }
+                            
+        } catch {
+            print("An error occured while fetching data: \(error)")
+            throw error
+        }
+    }
     
     
     func downloadImage(from imageURL: String) -> some View {

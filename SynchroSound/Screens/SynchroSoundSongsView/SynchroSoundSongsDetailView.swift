@@ -18,13 +18,14 @@ struct SynchroSoundSongsDetailView: View {
                 .fill(.brandBlue)
             
             VStack {
+                
                 SpotifySongImage(imageURL: track.album.images.first?.url ??
                                  MockSpotifyResponse.sampleResponse.tracks[0].album.images[0].url)
                     .frame(width: 200, height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 Text(track.name)
-                    .padding(.top)
+                    .padding(.top, 1)
                     .font(.system(size: 26, weight: .semibold, design: .rounded))
                     .foregroundStyle(.white)
                     .frame(width: 200, alignment: .leading)
@@ -35,7 +36,7 @@ struct SynchroSoundSongsDetailView: View {
                     .foregroundStyle(.white)
                     .frame(width: 200, alignment: .leading)
                     .lineLimit(1)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 15)
                 
                 HStack {
                     Text(viewModel.formatTime(viewModel.currentTime))
@@ -90,6 +91,14 @@ struct SynchroSoundSongsDetailView: View {
                             .tint(.white)
                     }
                 }
+                            
+                Link(destination: URL(string: "https://open.spotify.com/track/\(track.id)")!, label: {
+                    Label("Spotify", systemImage: "arrow.up.right.square.fill")
+                        .tint(.white)
+                        .font(.system(size: 20))
+                })
+                .offset(CGSize(width: 0.0, height: 20.0))
+
             }
             
             VStack() {
@@ -114,6 +123,14 @@ struct SynchroSoundSongsDetailView: View {
         .onAppear() {
             viewModel.configurePreview(previewURL: track.preview_url ?? "No URL")
         }
+        .alert("No Preview Available", isPresented: $viewModel.isShowingAlert) {
+            Button("OK") {
+                viewModel.isShowingAlert = false
+            }
+        } message: {
+            Text("Please open song in spotify to play.")
+        }
+
     }
 }
 

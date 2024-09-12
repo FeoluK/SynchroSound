@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct SynchroSoundApp: App {
+    @StateObject private var loginState = LoginState()
+
     var body: some Scene {
         WindowGroup {
-            SynchroSoundTabView()
+            ContentViewManager()
+                .environmentObject(loginState)
         }
+        .modelContainer(for: [User.self])
     }
 }
+
