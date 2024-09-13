@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import SwiftData
 
 struct SynchroSoundAccountView: View {
     @EnvironmentObject var loginState: LoginState
     @StateObject var viewModel = SynchroSoundAccountViewModel()
+    @Binding var showTabView: Bool
     
     var body: some View {
         NavigationView {
@@ -37,26 +36,30 @@ struct SynchroSoundAccountView: View {
                                 .foregroundStyle(.white)
                                 .font(.system(size: 90))
                         }
-                        .padding(.leading, 20)
-                        
-                        Spacer()
-                        
+                        .padding(.leading, 25)
+                                                
                         VStack(alignment: .leading, spacing: 2) {
                             Text(loginState.currentUser?.name ?? "Name")
                                 .font(.system(size: 30, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.white)
                                 .lineLimit(1)
                             
-                            Text(loginState.currentUser?.email ?? "email")
-                                .font(.system(size: 20, weight: .regular, design: .rounded))
+                            Text(loginState.currentUser?.email ?? "Email")
+                                .font(.system(size: 20, weight: .light, design: .rounded))
                                 .foregroundStyle(.white)
                                 .tint(.white)
                                 .lineLimit(1)
+                            
+                            Spacer()
 
                         }
-                        .padding(.trailing, 22)
+                        .padding(.leading, 15)
+                        .padding(.top, 15)
+                        
+                        Spacer()
                     }
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 10)
+                    .frame(height: 135)
                     
                     VStack(spacing: 15) {
                         Button {
@@ -68,8 +71,7 @@ struct SynchroSoundAccountView: View {
                                           background: .white)
                         }
                         
-                        NavigationLink(destination: SynchroSoundLikedSongs(email: loginState.currentUser?.name ?? "Name",
-                                                                           name: loginState.currentUser?.email ?? "Email")) {
+                        NavigationLink(destination: SynchroSoundLikedSongs(showTabView: $showTabView)) {
                             AccountButton(text: "Liked Songs",
                                           symbol: "heart.fill",
                                           textColor: .white,
@@ -106,7 +108,8 @@ struct SynchroSoundAccountView: View {
                         .padding(.top, 10)
                     
                     SynchroSoundGenreSelection(viewModel: viewModel)
-                        .padding(.bottom, 15)
+                        .padding(.bottom, 30)
+                    
                 }
             }
             .alert("Maximum Genre Selection Reached", isPresented: $viewModel.showingMaxSelectionAlert) {
@@ -130,6 +133,6 @@ struct SynchroSongFavoriteMoods: View {
 }
 
 #Preview {
-    SynchroSoundAccountView()
+    SynchroSoundAccountView(showTabView: .constant(true))
         .environmentObject(LoginState())
 }

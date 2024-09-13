@@ -19,6 +19,7 @@ struct SynchroSoundLoginView: View {
     @State private var alertMessage: String = ""
     @State private var shouldSetLoginStatus: Bool = false 
     
+    
     var body: some View {
         ZStack {
             LinearGradient(colors: [.brandBabyBlue, .brandVibrantBlue],
@@ -79,20 +80,21 @@ struct SynchroSoundLoginView: View {
         }
         
         if let existingUser = users.first(where: { $0.email == email }) {
-            if existingUser.name == username {
-                alertMessage = "Welcome back, \(existingUser.name)!"
-                loginState.currentUser = existingUser
-                shouldSetLoginStatus = true
-            } else {
+            guard existingUser.name == username else {
                 alertMessage = "The username you entered does not match the name saved under \(existingUser.email)."
                 showAlert = true
                 shouldSetLoginStatus = false
+                return
             }
+            
+            alertMessage = "Welcome back, \(existingUser.name)!"
+            loginState.currentUser = existingUser
+            shouldSetLoginStatus = true
         } else {
             let newUser = User(email: email, name: username)
             modelContext.insert(newUser)
             alertMessage = "Account created for \(username)."
-            loginState.currentUser = newUser
+            loginState.currentUser = newUser  
             shouldSetLoginStatus = true
         }
         

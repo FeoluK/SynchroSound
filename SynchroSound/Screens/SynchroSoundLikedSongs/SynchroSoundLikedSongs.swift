@@ -8,35 +8,59 @@ import SwiftUI
 import SwiftData
 
 struct SynchroSoundLikedSongs: View {
-    @Query var users: [User]
     
-    let email: String
-    let name: String
+    @EnvironmentObject var loginState: LoginState
+    @StateObject var viewModel = SynchroSoundLikedSongsViewModel()
+    @Query var users: [User]
+    @Binding var showTabView: Bool
     
     var user: User? {
-        users.first { $0.email == email && $0.name == name }
+        users.first { $0.email == loginState.currentUser?.email }
     }
-
+    
     var body: some View {
-        if let user = user {
-            List(user.favoriteSongs, id: \.self) { song in
-                VStack(alignment: .leading) {
-                    Text(song.name)
-                        .font(.headline)
+        ZStack {
+            Color.indigo
+                .ignoresSafeArea()
+            
+            if let user = user, !user.favoriteSongs.isEmpty {
+                SynchroSoundLikedSongsContent(viewModel: viewModel)
+                
+                if viewModel.showingDetailView {
+                    SynchroSoundLikedSongsDetailView(track: viewModel.selectedTrack ??
+                                                     MockSpotifyResponse.sampleResponse.tracks[0],
+                                                     viewModel: viewModel)
                 }
+                
             }
-            .navigationTitle("Liked Songs")
-            .navigationBarTitleDisplayMode(.inline)
-        } else {
-            Text("No liked songs found for this user.")
-                .navigationTitle("Liked Songs")
-                .navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationTitle("Liked Songs")
+        .navigationBarTitleDisplayMode(.inline)
+        .alert("User Not Found", isPresented: $viewModel.isShowingError) {
+            Button("OK") {
+                viewModel.isShowingError = false
+            }
+        } message: {
+            Text("Please log back in.")
+        }
+        .onAppear {
+            showTabView = false
+            
+            guard let user else {
+                viewModel.isShowingError = true
+                return
+            }
+            
+            viewModel.loadSongs(user: user)
+        }
+        .onDisappear {
+            showTabView = true
         }
     }
 }
 
 
 #Preview {
-    SynchroSoundLikedSongs(email: "olufeolu@gmail.com", name: "Feolu")
+    SynchroSoundLikedSongs(showTabView: .constant(false))
         .modelContainer(for: User.self)
 }

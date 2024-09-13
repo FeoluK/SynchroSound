@@ -8,9 +8,6 @@
 import SwiftUI
 import AVFoundation
 
-import SwiftUI
-import AVFoundation
-
 class SynchroSongsViewModel: ObservableObject {
     @Published var tracks: [SpotifyResponse.TrackObject] = []
     @Published var showingDetailView = false

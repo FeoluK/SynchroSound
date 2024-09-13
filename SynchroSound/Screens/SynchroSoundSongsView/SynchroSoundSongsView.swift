@@ -77,4 +77,5 @@ struct SynchroSoundSongsView: View {
 
 #Preview {
     SynchroSoundSongsView(scanViewModel: SynchroSoundScanViewModel())
+        .environmentObject(LoginState())
 }

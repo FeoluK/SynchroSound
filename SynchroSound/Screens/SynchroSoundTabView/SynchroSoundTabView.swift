@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SynchroSoundTabView.swift
 //  SynchroSound
 //
 //  Created by Feolu Kolawole on 9/3/24.
@@ -11,6 +11,7 @@ import Observation
 struct SynchroSoundTabView: View {
 
     @StateObject var viewModel = TabBarViewModel()
+    @State private var showTabView = true
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -19,14 +20,16 @@ struct SynchroSoundTabView: View {
                 SynchroSoundScanView()
                     .tag("scan")
                 
-                SynchroSoundAccountView()
+                SynchroSoundAccountView(showTabView: $showTabView)
                     .tag("account")
                 
                 SynchroSoundInfoView(selectedTab: $viewModel.selectedTab)
                     .tag("info")
             }
             
-            CustomTabView(selectedTab: $viewModel.selectedTab)
+            if showTabView {
+                CustomTabView(selectedTab: $viewModel.selectedTab)
+            }
             
         }
         
@@ -36,4 +39,5 @@ struct SynchroSoundTabView: View {
 
 #Preview {
     SynchroSoundTabView()
+        .environmentObject(LoginState())
 }

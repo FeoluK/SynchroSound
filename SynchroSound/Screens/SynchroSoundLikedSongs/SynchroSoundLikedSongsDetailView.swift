@@ -1,16 +1,16 @@
 //
-//  SynchroSoundSongsDetailView.swift
+//  SynchroSoundLikedSongsDetailView.swift
 //  SynchroSound
 //
-//  Created by Feolu Kolawole on 9/8/24.
+//  Created by Feolu Kolawole on 9/12/24.
 //
 
 import SwiftUI
 import AVFoundation
 
-struct SynchroSoundSongsDetailView: View {
+struct SynchroSoundLikedSongsDetailView: View {
     let track: SpotifyResponse.TrackObject
-    @ObservedObject var viewModel: SynchroSongsViewModel
+    @ObservedObject var viewModel: SynchroSoundLikedSongsViewModel
     @EnvironmentObject var loginState: LoginState
     
     var body: some View {
@@ -66,13 +66,13 @@ struct SynchroSoundSongsDetailView: View {
                         } else {
                             loginState.currentUser?.favoriteSongs.append(track)
                         }
+                        
                     } label: {
                         Image(systemName: loginState.currentUser?.favoriteSongs.contains(where: { $0.id == track.id }) == true ?
                               "heart.fill" : "heart")
                             .font(.system(size: 30))
                             .tint(.white)
                     }
-
                     
                     Button {
                         viewModel.playPausePreview()
@@ -118,6 +118,8 @@ struct SynchroSoundSongsDetailView: View {
                         viewModel.isPlayingPreview = false
                         viewModel.configurePreview(previewURL: track.preview_url ?? "No URL")
                         viewModel.currentTime = 0.0
+                        guard let currentUser = loginState.currentUser else { return }
+                        viewModel.loadSongs(user: currentUser )
                     } label: {
                         XDismissButton()
                             .offset(CGSize(width: -7.0, height: -3.0))
