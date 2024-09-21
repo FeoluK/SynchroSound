@@ -32,6 +32,7 @@ struct SynchroSoundTabView: View {
             }
             
         }
+        .ignoresSafeArea(.keyboard)
         
     }
     

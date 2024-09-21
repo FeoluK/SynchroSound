@@ -79,6 +79,13 @@ struct SynchroSoundLoginView: View {
             return
         }
         
+        guard email.isValidEmail else {
+            alertMessage = "Please enter in a valid email."
+            showAlert = true
+            shouldSetLoginStatus = false
+            return
+        }
+        
         if let existingUser = users.first(where: { $0.email == email }) {
             guard existingUser.name == username else {
                 alertMessage = "The username you entered does not match the name saved under \(existingUser.email)."

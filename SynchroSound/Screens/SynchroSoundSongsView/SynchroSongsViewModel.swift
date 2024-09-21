@@ -16,6 +16,7 @@ class SynchroSongsViewModel: ObservableObject {
     @Published var isPlayingPreview = false
     @Published var currentTime: Double = 0.0
     @Published var isShowingAlert = false
+    @Published var isShowingMoodDetail = false
     
     private var timer: Timer?
     let columns = [

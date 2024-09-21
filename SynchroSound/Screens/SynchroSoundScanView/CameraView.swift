@@ -6,26 +6,36 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct CameraView: UIViewControllerRepresentable {
     @Binding var isPresented: Bool
     @Binding var selectedImage: UIImage?
+    var sourceType: UIImagePickerController.SourceType
 
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = context.coordinator
-        picker.allowsEditing = false
-        return picker
+    func makeUIViewController(context: Context) -> UIViewController {
+        if sourceType == .camera {
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.delegate = context.coordinator
+            picker.allowsEditing = false
+            return picker
+        } else {
+            var config = PHPickerConfiguration()
+            config.filter = .images // Only images
+            let picker = PHPickerViewController(configuration: config)
+            picker.delegate = context.coordinator
+            return picker
+        }
     }
 
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
 
-    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
         let parent: CameraView
 
         init(_ parent: CameraView) {
@@ -37,6 +47,24 @@ struct CameraView: UIViewControllerRepresentable {
                 parent.selectedImage = image
             }
             parent.isPresented = false
+        }
+
+        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            guard let provider = results.first?.itemProvider else {
+                parent.isPresented = false
+                return
+            }
+
+            if provider.canLoadObject(ofClass: UIImage.self) {
+                provider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
+                    DispatchQueue.main.async {
+                        self?.parent.selectedImage = image as? UIImage
+                        self?.parent.isPresented = false
+                    }
+                }
+            } else {
+                parent.isPresented = false
+            }
         }
 
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

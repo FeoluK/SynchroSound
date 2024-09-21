@@ -145,4 +145,5 @@ struct SynchroSoundSongsDetailView: View {
 
 #Preview {
     SynchroSoundSongsDetailView(track: MockSpotifyResponse.sampleResponse.tracks[0], viewModel: SynchroSongsViewModel())
+        .environmentObject(LoginState())
 }

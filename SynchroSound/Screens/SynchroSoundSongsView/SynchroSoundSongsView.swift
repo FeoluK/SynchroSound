@@ -11,7 +11,7 @@ struct SynchroSoundSongsView: View {
     
     @ObservedObject var scanViewModel: SynchroSoundScanViewModel
     @StateObject var songViewModel = SynchroSongsViewModel()
-        
+
     var body: some View {
         ZStack {
             SynchroSoundSongBackground()
@@ -37,17 +37,26 @@ struct SynchroSoundSongsView: View {
                     .foregroundStyle(.brandVibrantBlue)
                     .padding(.vertical, 15)
                 
-                HStack(spacing: 35) {
-                    SynchroSoundInfoViewRoundBlock(text: "Save")
-                    SynchroSoundInfoViewRoundBlock(text: "Mood")
+                Button {
+                    songViewModel.isShowingMoodDetail.toggle()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.brandVibrantBlue)
+                            .frame(width: 300, height: 40)
+                        Text("View Mood")
+                            .foregroundStyle(.white)
+                            .font(.system(size: 25, weight: .semibold, design: .rounded))
+                    }
+                    
                 }
-                
+                                    
                 SynchroSoundSongMatchesView(viewModel: songViewModel)
             }
             .blur(radius: songViewModel.showingDetailView ? 20 : 0)
             
             if !songViewModel.showingDetailView {
-                VStack() {
+                VStack {
                     HStack {
                         Button {
                             scanViewModel.showEmotionResults = false
@@ -60,9 +69,7 @@ struct SynchroSoundSongsView: View {
                     Spacer()
                 }
                 .padding()
-            }
-            
-            else {
+            } else {
                 SynchroSoundSongsDetailView(track: songViewModel.selectedTrack ??
                                             MockSpotifyResponse.sampleResponse.tracks[0],
                                             viewModel: songViewModel)
@@ -70,7 +77,12 @@ struct SynchroSoundSongsView: View {
             
         }
         .onAppear {
-            songViewModel.getSongs(spotifyRequest: MockSpotifyRequest.sadRequest)
+            songViewModel.getSongs(spotifyRequest: scanViewModel.spotifyRequest ?? MockSpotifyRequest.sadRequest)
+        }
+        .sheet(isPresented: $songViewModel.isShowingMoodDetail) {
+            let emotionValues = scanViewModel.getEmotionValues(with: ["Joy": "VERY_LIKELY", "Sadness": "UNLIKELY", "Anger": "POSSIBLE", "Surprise": "LIKELY"])
+            let moods = emotionValues.map { MoodData(emotion: $0.key, value: $0.value) }
+            SynchroSoundMoodDetailView(moods: moods)
         }
     }
 }

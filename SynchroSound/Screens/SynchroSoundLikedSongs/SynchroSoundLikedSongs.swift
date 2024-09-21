@@ -20,8 +20,9 @@ struct SynchroSoundLikedSongs: View {
     
     var body: some View {
         ZStack {
-            Color.indigo
-                .ignoresSafeArea()
+            LinearGradient(gradient: Gradient(colors: [Color.black, Color.blue.opacity(0.8)]),
+                           startPoint: .top, endPoint: .bottom)
+            .ignoresSafeArea()
             
             if let user = user, !user.favoriteSongs.isEmpty {
                 SynchroSoundLikedSongsContent(viewModel: viewModel)

@@ -12,7 +12,7 @@ struct SpotifyResponse: Codable, Hashable {
     
     struct RecommendationSeedObject: Codable, Hashable {
         let afterFilteringSize: Int
-        let href: String?  // Make this an optional
+        let href: String?  
         let id: String
         let initialPoolSize: Int
         let type: String

@@ -37,4 +37,5 @@ struct SynchroSoundGenreSelection: View {
 
 #Preview {
     SynchroSoundGenreSelection(viewModel: SynchroSoundAccountViewModel())
+        .environmentObject(LoginState())
 }

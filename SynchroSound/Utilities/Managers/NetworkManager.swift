@@ -21,15 +21,16 @@ class NetworkManager {
     
     private init() {}
     
-    func detectEmotion(from image: UIImage) async throws -> String {
+    func detectEmotion(from image: UIImage) async throws -> [String : String] {
+                
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            return "Unable to convert image to JPEG."
+            throw URLError(.cannotDecodeRawData)
         }
         
         let base64Image = imageData.base64EncodedString()
         
         guard let url = URL(string: NetworkManager.googleURL) else {
-            return "Invalid URL."
+            throw URLError(.badURL)
         }
         
         let requestPayload: [String: Any] = [
@@ -44,7 +45,7 @@ class NetworkManager {
         ]
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: requestPayload, options: []) else {
-            return "Unable to serialize request payload."
+            throw URLError(.cannotDecodeRawData)
         }
         
         var request = URLRequest(url: url)
@@ -55,11 +56,12 @@ class NetworkManager {
         let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
-            return "No HTTP URL response received."
+            throw URLError(.badServerResponse)
         }
         
         guard httpResponse.statusCode == 200 else {
-            return "HTTP response error \nCode: \(httpResponse.statusCode)"
+            print("HTTP response error \nCode: \(httpResponse.statusCode)")
+            throw URLError(.badServerResponse)
         }
         
         do {
@@ -67,18 +69,21 @@ class NetworkManager {
             let response = try decoder.decode(GoogleCloudVisionResponse.self, from: data)
             
             guard let faceAnnotations = response.responses.first?.faceAnnotations.first else {
-                return "No face annotations found."
+                throw URLError(.badServerResponse)
+                
             }
             
-            return """
-            Joy: \(faceAnnotations.joyLikelihood)
-            Sorrow: \(faceAnnotations.sorrowLikelihood)
-            Anger: \(faceAnnotations.angerLikelihood)
-            Surprise: \(faceAnnotations.surpriseLikelihood)
-            """
+            var detectedEmotions: [String : String] = [:]
+            
+            detectedEmotions["Joy"] = faceAnnotations.joyLikelihood
+            detectedEmotions["Sorrow"] = faceAnnotations.sorrowLikelihood
+            detectedEmotions["Anger"] = faceAnnotations.angerLikelihood
+            detectedEmotions["Suprise"] = faceAnnotations.surpriseLikelihood
+            
+            return detectedEmotions
             
         } catch {
-            return "Unable to decode data"
+            throw URLError(.badServerResponse)
         }
     }
     

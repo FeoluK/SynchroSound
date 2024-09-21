@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SynchroSoundGenreSelectionCell: View {
     
+    @EnvironmentObject var loginState: LoginState
+    @Environment(\.modelContext) private var modelContext
     @ObservedObject var viewModel: SynchroSoundAccountViewModel
     @State var isSelected = false
     let genre: String
@@ -26,13 +28,21 @@ struct SynchroSoundGenreSelectionCell: View {
                     if isSelected {
                         isSelected.toggle()
                         viewModel.numSelectedGenres -= 1
+                        loginState.currentUser?.preferedGenres.removeAll {$0 == genre}
                     } else {
                         if viewModel.numSelectedGenres < 5 {
                             isSelected.toggle()
                             viewModel.numSelectedGenres += 1
+                            loginState.currentUser?.preferedGenres.append(genre)
                         } else {
                             viewModel.showingMaxSelectionAlert.toggle()
                         }
+                    }
+                    
+                    do {
+                       try modelContext.save()
+                    } catch {
+                        print("Couldn't save, error occured!")
                     }
                     
                 } label: {
@@ -49,9 +59,20 @@ struct SynchroSoundGenreSelectionCell: View {
                 
             }
         }
+        .onAppear {
+            guard let user = loginState.currentUser else {
+                print("Could not find current user, error occured")
+                return
+            }
+            
+            if user.preferedGenres.contains(genre) {
+                isSelected = true
+            }
+        }
     }
 }
 
 #Preview {
     SynchroSoundGenreSelectionCell(viewModel: SynchroSoundAccountViewModel(), genre: "r-n-b")
+        .environmentObject(LoginState())
 }
