@@ -1,101 +1,102 @@
 
-# SynchroSound Project
+# SynchroSound
 
-SynchroSound is a unique app that recommends music based on the user's mood, detected via facial expressions or selected images. Below is an overview of the user experience, illustrating how each screen flows into the next.
-
----
-
-### Start Here: **Mood Detection Screen**
-
-1. **Scan or Select Image**  
-   The user starts by either scanning their face or selecting a photo from their camera roll. The app analyzes the image for emotions like joy, sadness, anger, and surprise.
-
-   ⬇️ *Clicking 'Analyze' leads to...* ⬇️
+**SynchroSound** is an innovative music app that analyzes your facial expressions and matches your mood with a selection of songs. By using advanced emotion detection and integrating with Spotify, SynchroSound provides music recommendations that fit how you're feeling. Whether you're happy, sad, or somewhere in between, we find the perfect song for your mood.
 
 ---
 
-### Next Up: **Mood Breakdown View**
+## 🖼️ Screens Overview
 
-![Mood Breakdown View](./path_to_images/MoodBreakDownView.png)
+### 1. **Login Screen**
 
-- **Mood Breakdown View** displays a visual breakdown of the emotions detected in the scanned or selected photo. The user can see how their emotional state is divided across categories like joy, sadness, anger, etc.
-- The graph is displayed in a modern, futuristic style.
+The first screen you encounter is the **Login Screen**. Simply log in using your account credentials, which allows you to sync your preferences and keep track of your favorite songs.
 
-⬇️ *Clicking 'See Recommended Songs' leads to...* ⬇️
-
----
-
-### Explore Recommendations: **Song View**
-
-![Song View](./path_to_images/SongView.png)
-
-- **Song View** presents a list of songs that match the user's detected emotions.
-- Each song comes with its **album artwork**, **song title**, and the ability to play a preview.
-- The songs are tailored to the emotional state as analyzed by the app.
-
-⬇️ *Clicking on a song leads to...* ⬇️
+`[PLACEHOLDER FOR LOGIN SCREEN IMAGE]`
 
 ---
 
-### Dive Deeper: **Song Detail View**
+### 2. **Tab View Overview**
 
-![Song Detail View](./path_to_images/SongDetailView.png)
+After logging in, you enter the main **Tab View**, which consists of three key sections: the Info Screen, Scan Screen, and Account Screen. These can be navigated using the bottom tab bar.
 
-- **Song Detail View** provides an in-depth look at the selected song.
-- Users can view song attributes such as **tempo**, **energy**, and **valence**, which are mapped from their emotions.
-- The view also allows the user to see **album details**, and they can **play a preview** of the track directly from this screen.
-
-⬇️ *Clicking 'Back' returns to...* ⬇️
+`[PLACEHOLDER FOR TAB VIEW SCREEN IMAGE]`
 
 ---
 
-### Returning to the **Song View**
+### 3. **Info Screen: How SynchroSound Works**
 
-From here, users can continue exploring recommended songs or return to the mood breakdown to restart the scanning process.
+In the **Info Screen**, we explain how the app works:
+> "SynchroSound analyzes your facial expressions to match your mood with the perfect song. Just scan your face to get started, and let us sync your emotions with music tailored just for you!"
 
----
+`[PLACEHOLDER FOR INFO SCREEN IMAGE]`
 
-## How It Works
-
-### Emotion Detection
-SynchroSound integrates with the **Google Cloud Vision API** to detect emotions from images. These emotions are processed and mapped to **Spotify song attributes** such as valence (positivity), energy, and danceability.
-
-### Song Recommendation
-SynchroSound uses the **Spotify API** to pull song data and recommend tracks based on the user's emotional state. For example:
-- **Joy** might map to high-energy, upbeat songs.
-- **Sadness** could lead to slower, more mellow tracks.
+The Info Screen gives users a brief introduction and explains the app's purpose, getting you ready to start scanning and receiving personalized song recommendations.
 
 ---
 
-## Installation & Setup
+### 4. **Scan Screen: Capture or Upload a Photo**
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-repository/synchrosound.git
-    cd synchrosound
-    ```
+The next tab is the **Scan Screen**, where the magic happens. Here, you can either:
 
-2. **Setup API Keys**:
-    - Add your **Google Cloud Vision API Key** to enable emotion detection.
-    - Add your **Spotify API Key** for fetching music recommendations.
+- **Take a Photo** with your camera.
+- **Upload an Existing Photo** from your gallery.
 
-3. **Build and Run**:
-    - Open the project in Xcode.
-    - Build the app and run it on your preferred simulator or device.
+After selecting or capturing a photo, the app analyzes your facial expressions using AI to detect your emotions. Based on your mood, we will recommend songs curated just for you.
+
+`[PLACEHOLDER FOR SCAN SCREEN IMAGE]`
 
 ---
 
-## Future Features
-- **User Account Management**: Users will be able to edit and save their profiles, including favorite songs and genres.
-- **Enhanced Search and Filter**: Allows users to search and filter recommended songs based on genre or mood.
-- **Emotion History**: A feature that tracks the user's emotional state over time, giving insights into mood trends.
+### 5. **Song Matching Screen**
+
+Once the app has analyzed your photo, you'll be taken to the **Song Matching Screen**, where all the songs that match your mood will be displayed. You can explore the list of songs, see their attributes (e.g., energy, danceability), and choose the one that fits your vibe.
+
+Key features of the Song Matching Screen:
+- **Preview Songs** directly within the app.
+- **Open Songs in Spotify**.
+- **Like Songs** to add them to your list of favorites for easy access later.
+
+`[PLACEHOLDER FOR SONG MATCHING SCREEN IMAGE]`
 
 ---
 
-## Contributors
-- **Feolu Kolawole**: Lead Developer
+### 6. **Song Detail View**
+
+When you click on a song in the Song Matching Screen, the **Song Detail View** opens. Here you can:
+- Play a song preview.
+- View detailed attributes of the song.
+- Open the full song in Spotify.
+- Like or dislike the song.
+
+`[PLACEHOLDER FOR SONG DETAIL SCREEN IMAGE]`
 
 ---
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+### 7. **Mood Breakdown**
+
+Still on the Song Matching Screen? You can also view your **Mood Breakdown**, which displays a breakdown of the emotions detected from your facial expression in the form of a graph or pie chart. This allows you to see exactly how your mood influenced the song recommendations.
+
+`[PLACEHOLDER FOR MOOD BREAKDOWN SCREEN IMAGE]`
+
+---
+
+### 8. **Account View**
+
+The final tab on the Tab View is the **Account View**. Here you can:
+- **View Liked Songs**.
+- **Change Settings** such as preferences for song recommendations or update your profile.
+- **Log Out** to end your session and return to the login screen.
+
+`[PLACEHOLDER FOR ACCOUNT VIEW SCREEN IMAGE]`
+
+---
+
+## 📱 How to Get Started
+
+1. **Download SynchroSound**.
+2. **Log in** using your account credentials.
+3. Navigate to the **Scan Screen** and capture or upload a photo.
+4. View your **song matches** and explore the recommended music tailored to your mood.
+5. **Like songs** and come back anytime to listen again or explore new moods!
+
+---
