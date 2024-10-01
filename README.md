@@ -11,7 +11,8 @@
 
 The first screen you encounter is the **Login Screen**. Simply log in using your account credentials, which allows you to sync your preferences and keep track of your favorite songs.
 
-![Login](https://github.com/user-attachments/assets/476fce12-60d6-4a30-a7c5-1aebd86cd731)
+
+<img src="https://github.com/user-attachments/assets/476fce12-60d6-4a30-a7c5-1aebd86cd731" alt = "Login" width="400">
 
 ---
 
